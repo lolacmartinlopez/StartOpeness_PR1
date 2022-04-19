@@ -15,7 +15,7 @@ namespace StartOpenness
         
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> ESTO ES UNA PRUEBA PARA VER QUE OCURRE
         /// Verwendete Ressourcen bereinigen.
         /// </summary>
         /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
