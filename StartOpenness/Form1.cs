@@ -143,6 +143,32 @@ namespace StartOpenness
 
         }
 
+        //Descomprir proyecto del TIA Portal 
+
+        public void Unzip(string path)
+        {
+            //Proyecto comprimido
+
+            MyTiaPortal.Projects.Retrieve(new FileInfo(path), new DirectoryInfo(DecompProjectPath));
+
+            //Get active process
+
+            IList<TiaPortalProcess> tiaProcessList = TiaPortal.GetProcesses();
+
+            //Si no tenemos instancia del TIA corriendo, lo que hará es iniciar una. Si ya tenemos una instancia del TIA, no hará caso a esta linea de codigo. 
+
+            TiaPortal tiaApp = tiaProcessList.Count > 0 ? tiaProcessList[0].Attach() : new TiaPortal(TiaPortalMode.WithUserInterface);
+            
+            //Take the first project
+            if (tiaApp.Projects.Count > 0) //Si hay mas de un proyecto, indicamos que mi proyecto es el primero de todos. 
+                MyProject = tiaApp.Projects[0];
+            else
+            {
+                //indicar que no se puede abrir
+                MessageBox.Show("Error doing unzip");
+            }
+        }
+
         public void SearchProject(object sender, EventArgs e)
         {
             //Abrimos la busqueda de projectos que tengan las terminaciones 15_1. 
